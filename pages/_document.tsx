@@ -28,7 +28,12 @@ export default class CustomDocument extends Document<DocumentProps> {
   render() {
     return (
       <html lang="en">
-        <Head></Head>
+        <Head>
+          <script
+            src="https://assets.adobedtm.com/5a2ae30b5e30/28a72365dc9c/launch-97087593aa28-development.min.js"
+            async
+          ></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
