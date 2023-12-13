@@ -43,12 +43,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const event = new CustomEvent("productInfo-updated");
-
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
 
   useEffect(() => {
+    const event = new CustomEvent("productInfo-updated");
     const prodData: {
       "entity:id": string;
       "entity:name": string;
