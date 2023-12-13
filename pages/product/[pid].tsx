@@ -18,8 +18,8 @@ type ProductPageType = {
   product: ProductType;
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const pid = query.pid;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const pid = params?.pid;
   const res = await fetch(`${server}/api/product/${pid}`);
   const product = await res.json();
 
@@ -30,7 +30,20 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
-const Product = ({ product }: any) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${server}/api/product`);
+  const products: ProductType[] = await res.json();
+  const productIds = products.map((item) => ({
+    params: { pid: item.id },
+  }));
+
+  return {
+    paths: productIds,
+    fallback: false,
+  };
+};
+
+const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
 
   return (

@@ -17,6 +17,8 @@ export default class CustomDocument extends Document<DocumentProps> {
     // Check if in production
     const isProduction = process.env.NODE_ENV === "production";
 
+    console.log("initial", initialProps);
+
     return {
       ...initialProps,
       isProduction,
