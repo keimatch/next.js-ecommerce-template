@@ -43,6 +43,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+const event = new CustomEvent("productInfo-updated");
+
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
 
@@ -69,6 +71,7 @@ const Product = ({ product }: ProductPageType) => {
         target: prodData,
       },
     };
+    dispatchEvent(event);
     return () => {
       // @ts-ignore
       window.customDataLayer = {};
