@@ -69,6 +69,10 @@ const Product = ({ product }: ProductPageType) => {
         target: prodData,
       },
     };
+    return () => {
+      // @ts-ignore
+      window.customDataLayer = {};
+    };
   }, []);
 
   return (
