@@ -59,7 +59,7 @@ const Product = ({ product }: ProductPageType) => {
       "entity:id": product.id,
       "entity:name": product.name,
       "entity:url": location.href,
-      "entity:image": location.origin + "/" + product.images,
+      "entity:image": location.origin + product.images,
       "entity:price": product.price,
       "entity:stock": product.stock,
     };
