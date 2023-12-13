@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 
 import { useState } from "react";
 import Footer from "../../components/footer";
@@ -18,11 +18,22 @@ type ProductPageType = {
   product: ProductType;
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const pid = query.pid;
+// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+//   const pid = query.pid;
+//   const res = await fetch(`${server}/api/product/${pid}`);
+//   const product = await res.json();
+
+//   return {
+//     props: {
+//       product,
+//     },
+//   };
+// };
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const pid = params?.pid;
   const res = await fetch(`${server}/api/product/${pid}`);
   const product = await res.json();
-
   return {
     props: {
       product,
@@ -30,7 +41,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
-const Product = ({ product }: ProductPageType) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { pid: "1" } },
+      { params: { pid: "2" } },
+      { params: { pid: "3" } },
+    ],
+    fallback: false,
+  };
+};
+
+const Product = ({ product }: any) => {
   const [showBlock, setShowBlock] = useState("description");
 
   return (
