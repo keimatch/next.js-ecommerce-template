@@ -1,6 +1,6 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Footer from "../../components/footer";
 import Layout from "../../layouts/Main";
 import Breadcrumb from "../../components/breadcrumb";
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${server}/api/product`);
+  const res = await fetch(`${server}/api/products`);
   const products: ProductType[] = await res.json();
   const productIds = products.map((item) => ({
     params: { pid: item.id },
@@ -45,6 +45,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
+
+  useEffect(() => {
+    const prodData: {
+      "entity:id": string;
+      "entity:name": string;
+      "entity:url": string;
+      "entity:image": string;
+      "entity:price": string;
+      "entity:stock": boolean;
+    } = {
+      "entity:id": product.id,
+      "entity:name": product.name,
+      "entity:url": location.href,
+      "entity:image": location.origin + "/" + product.images,
+      "entity:price": product.price,
+      "entity:stock": product.stock,
+    };
+
+    // @ts-ignore
+    window.customDataLayer = {
+      __adobe: {
+        target: prodData,
+      },
+    };
+  }, []);
 
   return (
     <Layout>
