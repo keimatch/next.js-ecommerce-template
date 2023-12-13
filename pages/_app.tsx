@@ -12,22 +12,14 @@ import "react-rater/lib/react-rater.css";
 import "../assets/css/styles.scss";
 import ThemeProvider from "../components/context/theme-provider";
 
-import * as gtag from "./../utils/gtag";
-
-const isProduction = process.env.NODE_ENV === "production";
-
-// only events on production
-if (isProduction) {
-  // Notice how we track pageview when route is changed
-  Router.events.on("routeChangeComplete", (url: string) => gtag.pageview(url));
-}
-
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Fragment>
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  </Fragment>
-);
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  return (
+    <Fragment>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Fragment>
+  );
+};
 
 export default wrapper.withRedux(MyApp);
