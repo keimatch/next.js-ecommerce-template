@@ -18,17 +18,17 @@ type ProductPageType = {
   product: ProductType;
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-//   const pid = query.pid;
-//   const res = await fetch(`${server}/api/product/${pid}`);
-//   const product = await res.json();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const pid = query.pid;
+  const res = await fetch(`${server}/api/product/${pid}`);
+  const product = await res.json();
 
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// };
+  return {
+    props: {
+      product,
+    },
+  };
+};
 
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
