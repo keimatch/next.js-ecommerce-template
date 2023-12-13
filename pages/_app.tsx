@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Router from "next/router";
 import { wrapper } from "../store";
 
 // types

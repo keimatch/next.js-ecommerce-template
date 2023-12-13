@@ -33,7 +33,36 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
 
-  return <div>hogehoge</div>;
+  return (
+    <div>hogehoge</div>
+    // <Layout>
+    //   <Breadcrumb />
+
+    //   <section className="product-single">
+    //     <div className="container">
+    //       <div className="product-single__content">
+    //         <Gallery images={product.images} />
+    //         <Content product={product} />
+    //       </div>
+
+    //       <div className="product-single__info">
+    //         <div className="product-single__info-btns">
+    //           <button type="button" onClick={() => setShowBlock('description')} className={`btn btn--rounded ${showBlock === 'description' ? 'btn--active' : ''}`}>Description</button>
+    //           <button type="button" onClick={() => setShowBlock('reviews')} className={`btn btn--rounded ${showBlock === 'reviews' ? 'btn--active' : ''}`}>Reviews (2)</button>
+    //         </div>
+
+    //         <Description show={showBlock === 'description'} />
+    //         <Reviews product={product} show={showBlock === 'reviews'} />
+    //       </div>
+    //     </div>
+    //   </section>
+
+    //   <div className="product-single-page">
+    //     <ProductsFeatured />
+    //   </div>
+    //   <Footer />
+    // </Layout>
+  );
 };
 
 export default Product;
