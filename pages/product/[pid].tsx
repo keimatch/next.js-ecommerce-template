@@ -18,37 +18,15 @@ type ProductPageType = {
   product: ProductType;
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-//   const pid = query.pid;
-//   const res = await fetch(`${server}/api/product/${pid}`);
-//   const product = await res.json();
-
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// };
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const pid = params?.pid;
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const pid = query.pid;
   const res = await fetch(`${server}/api/product/${pid}`);
   const product = await res.json();
+
   return {
     props: {
       product,
     },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { pid: "1" } },
-      { params: { pid: "2" } },
-      { params: { pid: "3" } },
-    ],
-    fallback: false,
   };
 };
 
